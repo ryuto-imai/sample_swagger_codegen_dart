@@ -1,0 +1,7 @@
+{{>header}}
+
+abstract class ApiAuthRepository {
+{{#authMethods}}
+  late Future<String?> {{#camelcase}}{{name}}{{/camelcase}};
+{{/authMethods}}
+}

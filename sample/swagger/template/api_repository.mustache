@@ -1,0 +1,25 @@
+{{>header}}
+
+import '../models.dart';
+import '../apis.dart';
+import '../result.dart';
+import 'api_auth_repository.dart';
+import 'package:dio/dio.dart';
+
+{{#operations}}
+abstract class {{classname}}Repository {
+  late Dio dio;
+  late String baseUrl;
+  late ApiAuthRepository authRepository;
+
+  {{#operation}}
+  {{#returnType}}Future<Result<{{{returnType}}}>>{{/returnType}}{{^returnType}}Future{{/returnType}} {{nickname}}({{#allParams}}{{#isPathParam}}
+    {{{dataType}}} {{paramName}},{{/isPathParam}}{{#isQueryParam}}
+    {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isQueryParam}}{{#isHeaderParam}}
+    {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isHeaderParam}}{{#isBodyParam}}
+    {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isBodyParam}}{{/allParams}}
+  );
+
+  {{/operation}}
+}
+{{/operations}}

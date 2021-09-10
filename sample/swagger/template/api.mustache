@@ -1,0 +1,30 @@
+{{>header}}
+
+import 'package:retrofit/retrofit.dart';
+import 'package:dio/dio.dart' hide Headers;
+import '../models.dart';
+
+{{#operations}}
+part '{{classFilename}}.g.dart';
+
+@RestApi(baseUrl: 'this url will be ignored if baseUrl is passed')
+abstract class {{classname}} {
+  factory {{classname}}(Dio dio, {String baseUrl}) = _{{classname}};
+
+  {{#operation}}
+  /// {{{summary}}}
+  ///
+  /// {{{notes}}}
+  @{{httpMethod}}('{{{path}}}'{{#pathParams}}.replaceAll('{' r'{{{baseName}}}' '}', {{{paramName}}}.toString()){{/pathParams}})
+  @Headers(<String, dynamic>{'Content-Type': 'application/json'})
+  {{#returnType}}Future<{{{returnType}}}>{{/returnType}}{{^returnType}}Future{{/returnType}} {{nickname}}({{#authMethods}}{{#isApiKey}}
+    {{#isKeyInHeader}}@Header('{{keyParamName}}'){{/isKeyInHeader}}{{^isKeyInHeader}}@Query('{{keyParamName}}''){{/isKeyInHeader}} String? {{#camelcase}}{{name}}{{/camelcase}},{{/isApiKey}}{{/authMethods}}{{#allParams}}{{#isPathParam}}
+    @Path() {{{dataType}}} {{paramName}},{{/isPathParam}}{{#isQueryParam}}
+    @Query('{{baseName}}') {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isQueryParam}}{{#isHeaderParam}}
+    @Header('{{baseName}}') {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isHeaderParam}}{{#isBodyParam}}
+    @Body() {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isBodyParam}}{{/allParams}}
+  );
+  {{/operation}}
+}
+
+{{/operations}}

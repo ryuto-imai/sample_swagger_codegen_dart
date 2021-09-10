@@ -1,0 +1,17 @@
+import '../models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part '{{classFilename}}.freezed.dart';
+part '{{classFilename}}.g.dart';
+
+@freezed
+class {{classname}} with _${{classname}} {
+  const factory {{classname}}({
+  {{#vars}}
+    @JsonKey(name: '{{baseName}}'){{#isNullable}} @Default(null){{/isNullable}}{{^isNullable}}{{^required}} @Default(null){{/required}}{{/isNullable}}{{^isNullable}}{{#required}} required{{/required}}{{/isNullable}} {{{datatypeWithEnum}}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}} {{name}},
+  {{/vars}}
+  }) = _{{classname}};
+
+  factory {{classname}}.fromJson(Map<String, dynamic> json) => _${{classname}}FromJson(json);
+}

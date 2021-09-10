@@ -1,0 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
+
+enum {{classname}} {
+  {{#allowableValues}}
+  {{#enumVars}}
+  @JsonValue({{{value}}}) {{name}},
+  {{/enumVars}}
+  {{/allowableValues}}
+}

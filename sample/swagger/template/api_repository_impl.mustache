@@ -1,0 +1,48 @@
+{{>header}}
+
+import '{{classFilename}}_repository.dart';
+import '../models.dart';
+import '../apis.dart';
+import '../result.dart';
+import 'api_auth_repository.dart';
+import 'package:dio/dio.dart';
+
+{{#operations}}
+class {{classname}}RepositoryImpl with {{classname}}Repository {
+  final Dio dio;
+  final String baseUrl;
+  final ApiAuthRepository authRepository;
+
+  {{classname}}RepositoryImpl({
+    required this.dio,
+    required this.baseUrl,
+    required this.authRepository
+  });
+
+  {{#operation}}
+  @override
+  {{#returnType}}Future<Result<{{{returnType}}}>>{{/returnType}}{{^returnType}}Future{{/returnType}} {{nickname}}({{#allParams}}{{#isPathParam}}
+    {{{dataType}}} {{paramName}},{{/isPathParam}}{{#isQueryParam}}
+    {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isQueryParam}}{{#isHeaderParam}}
+    {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isHeaderParam}}{{#isBodyParam}}
+    {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isBodyParam}}{{/allParams}}
+  ) async {
+{{#authMethods}}
+    final {{#camelcase}}{{name}}{{/camelcase}} = await this.authRepository.{{#camelcase}}{{name}}{{/camelcase}};
+{{/authMethods}}
+
+    return {{classname}}(this.dio, baseUrl: this.baseUrl)
+      .{{nickname}}({{#authMethods}}
+        {{#camelcase}}{{name}}{{/camelcase}},{{/authMethods}}{{#allParams}}{{#isPathParam}}
+        {{paramName}},{{/isPathParam}}{{#isQueryParam}}
+        {{paramName}},{{/isQueryParam}}{{#isHeaderParam}}
+        {{paramName}},{{/isHeaderParam}}{{#isBodyParam}}
+        {{paramName}},{{/isBodyParam}}{{/allParams}}  
+      )
+      .then((response) => Result{{#returnType}}<{{{returnType}}}>{{/returnType}}.success(response))
+      .catchError((error) => Result{{#returnType}}<{{{returnType}}}>{{/returnType}}.failure(error));
+  }
+
+  {{/operation}}
+}
+{{/operations}}

@@ -1,0 +1,9 @@
+{{>header}}
+
+{{#models}}
+    {{#model}}
+{{#isEnum}}{{>enum}}{{/isEnum}}{{^isEnum}}import '../models.dart';
+
+{{>class}}{{/isEnum}}
+    {{/model}}
+{{/models}}
