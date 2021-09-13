@@ -18,7 +18,7 @@ _$_Pet _$_$_PetFromJson(Map<String, dynamic> json) {
     tags: (json['tags'] as List<dynamic>?)
         ?.map((e) => Tag.fromJson(e as Map<String, dynamic>))
         .toList(),
-    status: json['status'],
+    status: _$enumDecodeNullable(_$PetStatusEnumEnumMap, json['status']),
   );
 }
 
@@ -28,5 +28,48 @@ Map<String, dynamic> _$_$_PetToJson(_$_Pet instance) => <String, dynamic>{
       'name': instance.name,
       'photoUrls': instance.photoUrls,
       'tags': instance.tags,
-      'status': instance.status,
+      'status': _$PetStatusEnumEnumMap[instance.status],
     };
+
+K _$enumDecode<K, V>(
+  Map<K, V> enumValues,
+  Object? source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    throw ArgumentError(
+      'A value must be provided. Supported values: '
+      '${enumValues.values.join(', ')}',
+    );
+  }
+
+  return enumValues.entries.singleWhere(
+    (e) => e.value == source,
+    orElse: () {
+      if (unknownValue == null) {
+        throw ArgumentError(
+          '`$source` is not one of the supported values: '
+          '${enumValues.values.join(', ')}',
+        );
+      }
+      return MapEntry(unknownValue, enumValues.values.first);
+    },
+  ).key;
+}
+
+K? _$enumDecodeNullable<K, V>(
+  Map<K, V> enumValues,
+  dynamic source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
+}
+
+const _$PetStatusEnumEnumMap = {
+  PetStatusEnum.available: 'available',
+  PetStatusEnum.pending: 'pending',
+  PetStatusEnum.sold: 'sold',
+};

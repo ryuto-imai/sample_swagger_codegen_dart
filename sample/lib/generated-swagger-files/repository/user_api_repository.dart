@@ -2,30 +2,26 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
-import '../models.dart';
-import '../apis.dart';
-import '../result.dart';
-import 'api_auth_repository.dart';
-import 'package:dio/dio.dart';
+part of '../repositories.dart';
 
 abstract class UserApiRepository {
   late Dio dio;
   late String baseUrl;
   late ApiAuthRepository authRepository;
 
-  Future createUser(
+  Future<Result<void>> createUser(
     User body,
   );
 
-  Future createUsersWithArrayInput(
+  Future<Result<void>> createUsersWithArrayInput(
     List<User> body,
   );
 
-  Future createUsersWithListInput(
+  Future<Result<void>> createUsersWithListInput(
     List<User> body,
   );
 
-  Future deleteUser(
+  Future<Result<void>> deleteUser(
     String username,
   );
 
@@ -38,10 +34,10 @@ abstract class UserApiRepository {
     String password,
   );
 
-  Future logoutUser(
+  Future<Result<void>> logoutUser(
   );
 
-  Future updateUser(
+  Future<Result<void>> updateUser(
     String username,
     User body,
   );

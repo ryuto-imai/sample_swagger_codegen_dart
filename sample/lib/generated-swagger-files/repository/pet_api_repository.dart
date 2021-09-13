@@ -2,22 +2,18 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
-import '../models.dart';
-import '../apis.dart';
-import '../result.dart';
-import 'api_auth_repository.dart';
-import 'package:dio/dio.dart';
+part of '../repositories.dart';
 
 abstract class PetApiRepository {
   late Dio dio;
   late String baseUrl;
   late ApiAuthRepository authRepository;
 
-  Future addPet(
+  Future<Result<void>> addPet(
     Pet body,
   );
 
-  Future deletePet(
+  Future<Result<void>> deletePet(
     int petId,
     String? apiKey,
   );
@@ -34,11 +30,11 @@ abstract class PetApiRepository {
     int petId,
   );
 
-  Future updatePet(
+  Future<Result<void>> updatePet(
     Pet body,
   );
 
-  Future updatePetWithForm(
+  Future<Result<void>> updatePetWithForm(
     int petId,
   );
 

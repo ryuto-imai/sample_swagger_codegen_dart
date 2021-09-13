@@ -15,10 +15,10 @@ abstract class {{classname}} {
   /// {{{summary}}}
   ///
   /// {{{notes}}}
-  @{{httpMethod}}('{{{path}}}'{{#pathParams}}.replaceAll('{' r'{{{baseName}}}' '}', {{{paramName}}}.toString()){{/pathParams}})
+  @{{httpMethod}}('{{{path}}}')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
-  {{#returnType}}Future<{{{returnType}}}>{{/returnType}}{{^returnType}}Future{{/returnType}} {{nickname}}({{#authMethods}}{{#isApiKey}}
-    {{#isKeyInHeader}}@Header('{{keyParamName}}'){{/isKeyInHeader}}{{^isKeyInHeader}}@Query('{{keyParamName}}''){{/isKeyInHeader}} String? {{#camelcase}}{{name}}{{/camelcase}},{{/isApiKey}}{{/authMethods}}{{#allParams}}{{#isPathParam}}
+  {{#returnType}}Future<{{{returnType}}}>{{/returnType}}{{^returnType}}Future{{/returnType}} {{nickname}}({{#authMethods}}
+    {{#isKeyInHeader}}@Header('{{name}}'){{/isKeyInHeader}}{{^isKeyInHeader}}@Query('{{name}}'){{/isKeyInHeader}} String? {{#camelcase}}{{name}}{{/camelcase}},{{/authMethods}}{{#allParams}}{{#isPathParam}}
     @Path() {{{dataType}}} {{paramName}},{{/isPathParam}}{{#isQueryParam}}
     @Query('{{baseName}}') {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isQueryParam}}{{#isHeaderParam}}
     @Header('{{baseName}}') {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isHeaderParam}}{{#isBodyParam}}

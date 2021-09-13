@@ -4,3 +4,5 @@ export 'model/order.dart';
 export 'model/pet.dart';
 export 'model/tag.dart';
 export 'model/user.dart';
+
+export 'model/wrap_map.dart';

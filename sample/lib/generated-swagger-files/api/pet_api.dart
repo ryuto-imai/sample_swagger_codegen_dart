@@ -18,14 +18,16 @@ abstract class PetApi {
   @POST('/pet')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future addPet(
+    @Query('petstore_auth') String? petstoreAuth,
     @Body() Pet body,
   );
   /// Deletes a pet
   ///
   /// 
-  @DELETE('/pet/{petId}'.replaceAll('{' r'petId' '}', petId.toString()))
+  @DELETE('/pet/{petId}')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future deletePet(
+    @Query('petstore_auth') String? petstoreAuth,
     @Path() int petId,
     @Header('api_key') String? apiKey,
   );
@@ -35,6 +37,7 @@ abstract class PetApi {
   @GET('/pet/findByStatus')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future<List<Pet>> findPetsByStatus(
+    @Query('petstore_auth') String? petstoreAuth,
     @Query('status') List<String> status,
   );
   /// Finds Pets by tags
@@ -43,12 +46,13 @@ abstract class PetApi {
   @GET('/pet/findByTags')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future<List<Pet>> findPetsByTags(
+    @Query('petstore_auth') String? petstoreAuth,
     @Query('tags') List<String> tags,
   );
   /// Find pet by ID
   ///
   /// Returns a single pet
-  @GET('/pet/{petId}'.replaceAll('{' r'petId' '}', petId.toString()))
+  @GET('/pet/{petId}')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future<Pet> getPetById(
     @Header('api_key') String? apiKey,
@@ -60,22 +64,25 @@ abstract class PetApi {
   @PUT('/pet')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future updatePet(
+    @Query('petstore_auth') String? petstoreAuth,
     @Body() Pet body,
   );
   /// Updates a pet in the store with form data
   ///
   /// 
-  @POST('/pet/{petId}'.replaceAll('{' r'petId' '}', petId.toString()))
+  @POST('/pet/{petId}')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future updatePetWithForm(
+    @Query('petstore_auth') String? petstoreAuth,
     @Path() int petId,
   );
   /// uploads an image
   ///
   /// 
-  @POST('/pet/{petId}/uploadImage'.replaceAll('{' r'petId' '}', petId.toString()))
+  @POST('/pet/{petId}/uploadImage')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future<ApiResponse> uploadFile(
+    @Query('petstore_auth') String? petstoreAuth,
     @Path() int petId,
   );
 }

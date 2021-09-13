@@ -3,8 +3,6 @@
 //
 
 import '../models.dart';
-
-import '../models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -20,3 +18,4 @@ class Category with _$Category {
 
   factory Category.fromJson(Map<String, dynamic> json) => _$CategoryFromJson(json);
 }
+

@@ -2,12 +2,7 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
-import 'user_api_repository.dart';
-import '../models.dart';
-import '../apis.dart';
-import '../result.dart';
-import 'api_auth_repository.dart';
-import 'package:dio/dio.dart';
+part of '../repositories.dart';
 
 class UserApiRepositoryImpl with UserApiRepository {
   final Dio dio;
@@ -21,7 +16,7 @@ class UserApiRepositoryImpl with UserApiRepository {
   });
 
   @override
-  Future createUser(
+  Future<Result<void>> createUser(
     User body,
   ) async {
 
@@ -34,7 +29,7 @@ class UserApiRepositoryImpl with UserApiRepository {
   }
 
   @override
-  Future createUsersWithArrayInput(
+  Future<Result<void>> createUsersWithArrayInput(
     List<User> body,
   ) async {
 
@@ -47,7 +42,7 @@ class UserApiRepositoryImpl with UserApiRepository {
   }
 
   @override
-  Future createUsersWithListInput(
+  Future<Result<void>> createUsersWithListInput(
     List<User> body,
   ) async {
 
@@ -60,7 +55,7 @@ class UserApiRepositoryImpl with UserApiRepository {
   }
 
   @override
-  Future deleteUser(
+  Future<Result<void>> deleteUser(
     String username,
   ) async {
 
@@ -101,7 +96,7 @@ class UserApiRepositoryImpl with UserApiRepository {
   }
 
   @override
-  Future logoutUser(
+  Future<Result<void>> logoutUser(
   ) async {
 
     return UserApi(this.dio, baseUrl: this.baseUrl)
@@ -112,7 +107,7 @@ class UserApiRepositoryImpl with UserApiRepository {
   }
 
   @override
-  Future updateUser(
+  Future<Result<void>> updateUser(
     String username,
     User body,
   ) async {

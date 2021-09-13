@@ -25,6 +25,11 @@ class DartRetrofitClientCodegen extends DefaultCodegen implements CodegenConfig 
 
   DartRetrofitClientCodegen() {
     super()
+
+    // clear import mapping (from default generator) as dart does not use it
+    // at the moment
+    importMapping.clear();
+
     this.modelTemplateFiles['model.mustache'] = '.dart'
     this.apiTemplateFiles['api.mustache'] = '.dart'
     this.apiTemplateFiles['api_repository.mustache'] = '.dart'
@@ -90,10 +95,14 @@ class DartRetrofitClientCodegen extends DefaultCodegen implements CodegenConfig 
 
     supportingFiles.add(new SupportingFile("models.mustache", outputFolder, "models.dart"))
     supportingFiles.add(new SupportingFile("apis.mustache", outputFolder, "apis.dart"))
+    supportingFiles.add(new SupportingFile("repositories.mustache", outputFolder, "repositories.dart"))
     supportingFiles.add(new SupportingFile("result.mustache", outputFolder, "result.dart"))
 
     String repositoryFolder = outputFolder + File.separator + "repository";
     supportingFiles.add(new SupportingFile("api_auth_repository.mustache", repositoryFolder, "api_auth_repository.dart"))
+
+    String modelFolder = outputFolder + File.separator + "model";
+    supportingFiles.add(new SupportingFile("wrap_map.mustache", modelFolder, "wrap_map.dart"))
   }
 
   @Override
@@ -234,11 +243,15 @@ class DartRetrofitClientCodegen extends DefaultCodegen implements CodegenConfig 
       ArrayProperty ap = (ArrayProperty) p
       Property inner = ap.getItems()
       return getSwaggerType(p) + '<' + getTypeDeclaration(inner) + '>'
-      } else if (p instanceof MapProperty) {
+    } else if (p instanceof MapProperty) {
       MapProperty mp = (MapProperty) p
       Property inner = mp.getAdditionalProperties()
 
-      return getSwaggerType(p) + '<String, ' + getTypeDeclaration(inner) + '>'
+      if (getSwaggerType(p) == 'Map') {
+        return 'WrapMap'
+      } else {
+        return getSwaggerType(p) + '<String, ' + getTypeDeclaration(inner) + '>'
+      }
     }
     return super.getTypeDeclaration(p)
   }

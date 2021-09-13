@@ -1,11 +1,6 @@
 {{>header}}
 
-import '{{classFilename}}_repository.dart';
-import '../models.dart';
-import '../apis.dart';
-import '../result.dart';
-import 'api_auth_repository.dart';
-import 'package:dio/dio.dart';
+part of '../repositories.dart';
 
 {{#operations}}
 class {{classname}}RepositoryImpl with {{classname}}Repository {
@@ -21,7 +16,7 @@ class {{classname}}RepositoryImpl with {{classname}}Repository {
 
   {{#operation}}
   @override
-  {{#returnType}}Future<Result<{{{returnType}}}>>{{/returnType}}{{^returnType}}Future{{/returnType}} {{nickname}}({{#allParams}}{{#isPathParam}}
+  {{#returnType}}Future<Result<{{{returnType}}}>>{{/returnType}}{{^returnType}}Future<Result<void>>{{/returnType}} {{nickname}}({{#allParams}}{{#isPathParam}}
     {{{dataType}}} {{paramName}},{{/isPathParam}}{{#isQueryParam}}
     {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isQueryParam}}{{#isHeaderParam}}
     {{{dataType}}}{{^required}}?{{/required}} {{paramName}},{{/isHeaderParam}}{{#isBodyParam}}

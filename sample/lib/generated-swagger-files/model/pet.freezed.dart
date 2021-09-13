@@ -26,7 +26,7 @@ class _$PetTearOff {
       @JsonKey(name: 'name') required String name,
       @JsonKey(name: 'photoUrls') required List<String> photoUrls,
       @JsonKey(name: 'tags') List<Tag>? tags = null,
-      @JsonKey(name: 'status') StatusEnum? status = null}) {
+      @JsonKey(name: 'status') PetStatusEnum? status = null}) {
     return _Pet(
       id: id,
       category: category,
@@ -58,7 +58,7 @@ mixin _$Pet {
   @JsonKey(name: 'tags')
   List<Tag>? get tags => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
-  StatusEnum? get status => throw _privateConstructorUsedError;
+  PetStatusEnum? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,7 +75,7 @@ abstract class $PetCopyWith<$Res> {
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'photoUrls') List<String> photoUrls,
       @JsonKey(name: 'tags') List<Tag>? tags,
-      @JsonKey(name: 'status') StatusEnum? status});
+      @JsonKey(name: 'status') PetStatusEnum? status});
 
   $CategoryCopyWith<$Res>? get category;
 }
@@ -121,7 +121,7 @@ class _$PetCopyWithImpl<$Res> implements $PetCopyWith<$Res> {
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as StatusEnum?,
+              as PetStatusEnum?,
     ));
   }
 
@@ -148,7 +148,7 @@ abstract class _$PetCopyWith<$Res> implements $PetCopyWith<$Res> {
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'photoUrls') List<String> photoUrls,
       @JsonKey(name: 'tags') List<Tag>? tags,
-      @JsonKey(name: 'status') StatusEnum? status});
+      @JsonKey(name: 'status') PetStatusEnum? status});
 
   @override
   $CategoryCopyWith<$Res>? get category;
@@ -196,7 +196,7 @@ class __$PetCopyWithImpl<$Res> extends _$PetCopyWithImpl<$Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as StatusEnum?,
+              as PetStatusEnum?,
     ));
   }
 }
@@ -231,7 +231,7 @@ class _$_Pet implements _Pet {
   final List<Tag>? tags;
   @override
   @JsonKey(name: 'status')
-  final StatusEnum? status;
+  final PetStatusEnum? status;
 
   @override
   String toString() {
@@ -286,7 +286,7 @@ abstract class _Pet implements Pet {
       @JsonKey(name: 'name') required String name,
       @JsonKey(name: 'photoUrls') required List<String> photoUrls,
       @JsonKey(name: 'tags') List<Tag>? tags,
-      @JsonKey(name: 'status') StatusEnum? status}) = _$_Pet;
+      @JsonKey(name: 'status') PetStatusEnum? status}) = _$_Pet;
 
   factory _Pet.fromJson(Map<String, dynamic> json) = _$_Pet.fromJson;
 
@@ -307,7 +307,7 @@ abstract class _Pet implements Pet {
   List<Tag>? get tags => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'status')
-  StatusEnum? get status => throw _privateConstructorUsedError;
+  PetStatusEnum? get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PetCopyWith<_Pet> get copyWith => throw _privateConstructorUsedError;

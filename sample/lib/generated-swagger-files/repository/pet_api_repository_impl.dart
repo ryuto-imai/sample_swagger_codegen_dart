@@ -2,12 +2,7 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
-import 'pet_api_repository.dart';
-import '../models.dart';
-import '../apis.dart';
-import '../result.dart';
-import 'api_auth_repository.dart';
-import 'package:dio/dio.dart';
+part of '../repositories.dart';
 
 class PetApiRepositoryImpl with PetApiRepository {
   final Dio dio;
@@ -21,7 +16,7 @@ class PetApiRepositoryImpl with PetApiRepository {
   });
 
   @override
-  Future addPet(
+  Future<Result<void>> addPet(
     Pet body,
   ) async {
     final petstoreAuth = await this.authRepository.petstoreAuth;
@@ -36,7 +31,7 @@ class PetApiRepositoryImpl with PetApiRepository {
   }
 
   @override
-  Future deletePet(
+  Future<Result<void>> deletePet(
     int petId,
     String? apiKey,
   ) async {
@@ -98,7 +93,7 @@ class PetApiRepositoryImpl with PetApiRepository {
   }
 
   @override
-  Future updatePet(
+  Future<Result<void>> updatePet(
     Pet body,
   ) async {
     final petstoreAuth = await this.authRepository.petstoreAuth;
@@ -113,7 +108,7 @@ class PetApiRepositoryImpl with PetApiRepository {
   }
 
   @override
-  Future updatePetWithForm(
+  Future<Result<void>> updatePetWithForm(
     int petId,
   ) async {
     final petstoreAuth = await this.authRepository.petstoreAuth;

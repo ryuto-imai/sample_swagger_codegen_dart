@@ -2,12 +2,7 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
-import 'store_api_repository.dart';
-import '../models.dart';
-import '../apis.dart';
-import '../result.dart';
-import 'api_auth_repository.dart';
-import 'package:dio/dio.dart';
+part of '../repositories.dart';
 
 class StoreApiRepositoryImpl with StoreApiRepository {
   final Dio dio;
@@ -21,7 +16,7 @@ class StoreApiRepositoryImpl with StoreApiRepository {
   });
 
   @override
-  Future deleteOrder(
+  Future<Result<void>> deleteOrder(
     int orderId,
   ) async {
 
@@ -34,7 +29,7 @@ class StoreApiRepositoryImpl with StoreApiRepository {
   }
 
   @override
-  Future<Result<Map<String, int>>> getInventory(
+  Future<Result<WrapMap>> getInventory(
   ) async {
     final apiKey = await this.authRepository.apiKey;
 
@@ -42,8 +37,8 @@ class StoreApiRepositoryImpl with StoreApiRepository {
       .getInventory(
         apiKey,  
       )
-      .then((response) => Result<Map<String, int>>.success(response))
-      .catchError((error) => Result<Map<String, int>>.failure(error));
+      .then((response) => Result<WrapMap>.success(response))
+      .catchError((error) => Result<WrapMap>.failure(error));
   }
 
   @override

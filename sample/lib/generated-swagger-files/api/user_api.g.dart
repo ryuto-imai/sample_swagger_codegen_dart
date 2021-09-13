@@ -77,7 +77,7 @@ class _UserApi implements UserApi {
             headers: <String, dynamic>{r'Content-Type': 'application/json'},
             extra: _extra,
             contentType: 'application/json')
-        .compose(_dio.options, null,
+        .compose(_dio.options, '/user/$username',
             queryParameters: queryParameters, data: _data)
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data;
@@ -95,7 +95,7 @@ class _UserApi implements UserApi {
                 headers: <String, dynamic>{r'Content-Type': 'application/json'},
                 extra: _extra,
                 contentType: 'application/json')
-            .compose(_dio.options, null,
+            .compose(_dio.options, '/user/$username',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = User.fromJson(_result.data!);
@@ -150,7 +150,7 @@ class _UserApi implements UserApi {
             headers: <String, dynamic>{r'Content-Type': 'application/json'},
             extra: _extra,
             contentType: 'application/json')
-        .compose(_dio.options, null,
+        .compose(_dio.options, '/user/$username',
             queryParameters: queryParameters, data: _data)
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data;

@@ -1,5 +1,7 @@
 {{>header}}
 
+part of '../repositories.dart';
+
 abstract class ApiAuthRepository {
 {{#authMethods}}
   late Future<String?> {{#camelcase}}{{name}}{{/camelcase}};

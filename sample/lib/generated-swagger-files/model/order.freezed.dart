@@ -25,7 +25,7 @@ class _$OrderTearOff {
       @JsonKey(name: 'petId') int? petId = null,
       @JsonKey(name: 'quantity') int? quantity = null,
       @JsonKey(name: 'shipDate') DateTime? shipDate = null,
-      @JsonKey(name: 'status') StatusEnum? status = null,
+      @JsonKey(name: 'status') OrderStatusEnum? status = null,
       @JsonKey(name: 'complete') bool? complete = null}) {
     return _Order(
       id: id,
@@ -56,7 +56,7 @@ mixin _$Order {
   @JsonKey(name: 'shipDate')
   DateTime? get shipDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
-  StatusEnum? get status => throw _privateConstructorUsedError;
+  OrderStatusEnum? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'complete')
   bool? get complete => throw _privateConstructorUsedError;
 
@@ -74,7 +74,7 @@ abstract class $OrderCopyWith<$Res> {
       @JsonKey(name: 'petId') int? petId,
       @JsonKey(name: 'quantity') int? quantity,
       @JsonKey(name: 'shipDate') DateTime? shipDate,
-      @JsonKey(name: 'status') StatusEnum? status,
+      @JsonKey(name: 'status') OrderStatusEnum? status,
       @JsonKey(name: 'complete') bool? complete});
 }
 
@@ -115,7 +115,7 @@ class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as StatusEnum?,
+              as OrderStatusEnum?,
       complete: complete == freezed
           ? _value.complete
           : complete // ignore: cast_nullable_to_non_nullable
@@ -134,7 +134,7 @@ abstract class _$OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
       @JsonKey(name: 'petId') int? petId,
       @JsonKey(name: 'quantity') int? quantity,
       @JsonKey(name: 'shipDate') DateTime? shipDate,
-      @JsonKey(name: 'status') StatusEnum? status,
+      @JsonKey(name: 'status') OrderStatusEnum? status,
       @JsonKey(name: 'complete') bool? complete});
 }
 
@@ -176,7 +176,7 @@ class __$OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as StatusEnum?,
+              as OrderStatusEnum?,
       complete: complete == freezed
           ? _value.complete
           : complete // ignore: cast_nullable_to_non_nullable
@@ -213,7 +213,7 @@ class _$_Order implements _Order {
   final DateTime? shipDate;
   @override
   @JsonKey(name: 'status')
-  final StatusEnum? status;
+  final OrderStatusEnum? status;
   @override
   @JsonKey(name: 'complete')
   final bool? complete;
@@ -271,7 +271,7 @@ abstract class _Order implements Order {
       @JsonKey(name: 'petId') int? petId,
       @JsonKey(name: 'quantity') int? quantity,
       @JsonKey(name: 'shipDate') DateTime? shipDate,
-      @JsonKey(name: 'status') StatusEnum? status,
+      @JsonKey(name: 'status') OrderStatusEnum? status,
       @JsonKey(name: 'complete') bool? complete}) = _$_Order;
 
   factory _Order.fromJson(Map<String, dynamic> json) = _$_Order.fromJson;
@@ -290,7 +290,7 @@ abstract class _Order implements Order {
   DateTime? get shipDate => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'status')
-  StatusEnum? get status => throw _privateConstructorUsedError;
+  OrderStatusEnum? get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'complete')
   bool? get complete => throw _privateConstructorUsedError;

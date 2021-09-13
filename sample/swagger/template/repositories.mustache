@@ -1,0 +1,9 @@
+import 'models.dart';
+import 'apis.dart';
+import 'result.dart';
+import 'package:dio/dio.dart';
+
+part 'repository/api_auth_repository.dart';
+{{#apiInfo}}{{#apis}}part 'repository/{{classFilename}}_repository.dart';
+part 'repository/{{classFilename}}_repository_impl.dart';
+{{/apis}}{{/apiInfo}}

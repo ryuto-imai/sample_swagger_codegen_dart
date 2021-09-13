@@ -9,9 +9,23 @@ part '{{classFilename}}.g.dart';
 class {{classname}} with _${{classname}} {
   const factory {{classname}}({
   {{#vars}}
-    @JsonKey(name: '{{baseName}}'){{#isNullable}} @Default(null){{/isNullable}}{{^isNullable}}{{^required}} @Default(null){{/required}}{{/isNullable}}{{^isNullable}}{{#required}} required{{/required}}{{/isNullable}} {{{datatypeWithEnum}}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}} {{name}},
+    @JsonKey(name: '{{baseName}}'){{#isNullable}} @Default(null){{/isNullable}}{{^isNullable}}{{^required}} @Default(null){{/required}}{{/isNullable}}{{^isNullable}}{{#required}} required{{/required}}{{/isNullable}} {{#isEnum}}{{^isContainer}}{{classname}}{{enumName}}{{/isContainer}}{{#isContainer}}{{#mostInnerItems}}{{classname}}{{enumName}}{{/mostInnerItems}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}} {{name}},
   {{/vars}}
   }) = _{{classname}};
 
   factory {{classname}}.fromJson(Map<String, dynamic> json) => _${{classname}}FromJson(json);
 }
+{{#vars}}
+    {{#isEnum}}
+        {{^isContainer}}
+
+{{>enum_inline}}
+        {{/isContainer}}
+        {{#isContainer}}
+            {{#mostInnerItems}}
+
+{{>enum_inline}}
+            {{/mostInnerItems}}
+        {{/isContainer}}
+    {{/isEnum}}
+{{/vars}}

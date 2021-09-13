@@ -39,7 +39,7 @@ abstract class UserApi {
   /// Delete user
   ///
   /// This can only be done by the logged in user.
-  @DELETE('/user/{username}'.replaceAll('{' r'username' '}', username.toString()))
+  @DELETE('/user/{username}')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future deleteUser(
     @Path() String username,
@@ -47,7 +47,7 @@ abstract class UserApi {
   /// Get user by user name
   ///
   /// 
-  @GET('/user/{username}'.replaceAll('{' r'username' '}', username.toString()))
+  @GET('/user/{username}')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future<User> getUserByName(
     @Path() String username,
@@ -71,7 +71,7 @@ abstract class UserApi {
   /// Updated user
   ///
   /// This can only be done by the logged in user.
-  @PUT('/user/{username}'.replaceAll('{' r'username' '}', username.toString()))
+  @PUT('/user/{username}')
   @Headers(<String, dynamic>{'Content-Type': 'application/json'})
   Future updateUser(
     @Path() String username,

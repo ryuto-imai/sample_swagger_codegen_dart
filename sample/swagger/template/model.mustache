@@ -2,8 +2,6 @@
 
 {{#models}}
     {{#model}}
-{{#isEnum}}{{>enum}}{{/isEnum}}{{^isEnum}}import '../models.dart';
-
-{{>class}}{{/isEnum}}
+{{#isEnum}}{{>enum}}{{/isEnum}}{{^isEnum}}{{>class}}{{/isEnum}}
     {{/model}}
 {{/models}}

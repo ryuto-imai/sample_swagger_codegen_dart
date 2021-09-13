@@ -3,8 +3,6 @@
 //
 
 import '../models.dart';
-
-import '../models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -19,8 +17,15 @@ class Pet with _$Pet {
     @JsonKey(name: 'name') required String name,
     @JsonKey(name: 'photoUrls') required List<String> photoUrls,
     @JsonKey(name: 'tags') @Default(null) List<Tag>? tags,
-    @JsonKey(name: 'status') @Default(null) StatusEnum? status,
+    @JsonKey(name: 'status') @Default(null) PetStatusEnum? status,
   }) = _Pet;
 
   factory Pet.fromJson(Map<String, dynamic> json) => _$PetFromJson(json);
 }
+
+enum PetStatusEnum {
+  @JsonValue('available') available,
+  @JsonValue('pending') pending,
+  @JsonValue('sold') sold,
+}
+

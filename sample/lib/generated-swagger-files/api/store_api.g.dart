@@ -25,7 +25,7 @@ class _StoreApi implements StoreApi {
             headers: <String, dynamic>{r'Content-Type': 'application/json'},
             extra: _extra,
             contentType: 'application/json')
-        .compose(_dio.options, null,
+        .compose(_dio.options, '/store/order/$orderId',
             queryParameters: queryParameters, data: _data)
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data;
@@ -33,13 +33,13 @@ class _StoreApi implements StoreApi {
   }
 
   @override
-  Future<Map<String, int>> getInventory(apiKey) async {
+  Future<WrapMap<dynamic>> getInventory(apiKey) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<Map<String, int>>(Options(
+        _setStreamType<WrapMap<dynamic>>(Options(
                 method: 'GET',
                 headers: <String, dynamic>{
                   r'Content-Type': 'application/json',
@@ -50,6 +50,7 @@ class _StoreApi implements StoreApi {
             .compose(_dio.options, '/store/inventory',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = WrapMap<dynamic>.fromJson(_result.data!);
     return value;
   }
 
@@ -64,7 +65,7 @@ class _StoreApi implements StoreApi {
                 headers: <String, dynamic>{r'Content-Type': 'application/json'},
                 extra: _extra,
                 contentType: 'application/json')
-            .compose(_dio.options, null,
+            .compose(_dio.options, '/store/order/$orderId',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Order.fromJson(_result.data!);

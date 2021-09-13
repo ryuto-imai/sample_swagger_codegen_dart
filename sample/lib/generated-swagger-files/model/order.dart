@@ -3,8 +3,6 @@
 //
 
 import '../models.dart';
-
-import '../models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -18,9 +16,16 @@ class Order with _$Order {
     @JsonKey(name: 'petId') @Default(null) int? petId,
     @JsonKey(name: 'quantity') @Default(null) int? quantity,
     @JsonKey(name: 'shipDate') @Default(null) DateTime? shipDate,
-    @JsonKey(name: 'status') @Default(null) StatusEnum? status,
+    @JsonKey(name: 'status') @Default(null) OrderStatusEnum? status,
     @JsonKey(name: 'complete') @Default(null) bool? complete,
   }) = _Order;
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
 }
+
+enum OrderStatusEnum {
+  @JsonValue('placed') placed,
+  @JsonValue('approved') approved,
+  @JsonValue('delivered') delivered,
+}
+

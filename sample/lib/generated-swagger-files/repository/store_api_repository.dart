@@ -2,22 +2,18 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
-import '../models.dart';
-import '../apis.dart';
-import '../result.dart';
-import 'api_auth_repository.dart';
-import 'package:dio/dio.dart';
+part of '../repositories.dart';
 
 abstract class StoreApiRepository {
   late Dio dio;
   late String baseUrl;
   late ApiAuthRepository authRepository;
 
-  Future deleteOrder(
+  Future<Result<void>> deleteOrder(
     int orderId,
   );
 
-  Future<Result<Map<String, int>>> getInventory(
+  Future<Result<WrapMap>> getInventory(
   );
 
   Future<Result<Order>> getOrderById(

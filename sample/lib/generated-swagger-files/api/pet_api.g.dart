@@ -16,9 +16,10 @@ class _PetApi implements PetApi {
   String? baseUrl;
 
   @override
-  Future<dynamic> addPet(body) async {
+  Future<dynamic> addPet(petstoreAuth, body) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'petstore_auth': petstoreAuth};
+    queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
@@ -34,9 +35,9 @@ class _PetApi implements PetApi {
   }
 
   @override
-  Future<dynamic> deletePet(petId, apiKey) async {
+  Future<dynamic> deletePet(petstoreAuth, petId, apiKey) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'petstore_auth': petstoreAuth};
     queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
@@ -47,7 +48,7 @@ class _PetApi implements PetApi {
             },
             extra: _extra,
             contentType: 'application/json')
-        .compose(_dio.options, null,
+        .compose(_dio.options, '/pet/$petId',
             queryParameters: queryParameters, data: _data)
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data;
@@ -55,9 +56,13 @@ class _PetApi implements PetApi {
   }
 
   @override
-  Future<List<Pet>> findPetsByStatus(status) async {
+  Future<List<Pet>> findPetsByStatus(petstoreAuth, status) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'status': status};
+    final queryParameters = <String, dynamic>{
+      r'petstore_auth': petstoreAuth,
+      r'status': status
+    };
+    queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<Pet>>(
         Options(
@@ -75,9 +80,13 @@ class _PetApi implements PetApi {
   }
 
   @override
-  Future<List<Pet>> findPetsByTags(tags) async {
+  Future<List<Pet>> findPetsByTags(petstoreAuth, tags) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'tags': tags};
+    final queryParameters = <String, dynamic>{
+      r'petstore_auth': petstoreAuth,
+      r'tags': tags
+    };
+    queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<Pet>>(
         Options(
@@ -109,7 +118,7 @@ class _PetApi implements PetApi {
                 },
                 extra: _extra,
                 contentType: 'application/json')
-            .compose(_dio.options, null,
+            .compose(_dio.options, '/pet/$petId',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Pet.fromJson(_result.data!);
@@ -117,9 +126,10 @@ class _PetApi implements PetApi {
   }
 
   @override
-  Future<dynamic> updatePet(body) async {
+  Future<dynamic> updatePet(petstoreAuth, body) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'petstore_auth': petstoreAuth};
+    queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
@@ -135,16 +145,17 @@ class _PetApi implements PetApi {
   }
 
   @override
-  Future<dynamic> updatePetWithForm(petId) async {
+  Future<dynamic> updatePetWithForm(petstoreAuth, petId) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'petstore_auth': petstoreAuth};
+    queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
             method: 'POST',
             headers: <String, dynamic>{r'Content-Type': 'application/json'},
             extra: _extra,
             contentType: 'application/json')
-        .compose(_dio.options, null,
+        .compose(_dio.options, '/pet/$petId',
             queryParameters: queryParameters, data: _data)
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data;
@@ -152,9 +163,10 @@ class _PetApi implements PetApi {
   }
 
   @override
-  Future<ApiResponse> uploadFile(petId) async {
+  Future<ApiResponse> uploadFile(petstoreAuth, petId) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'petstore_auth': petstoreAuth};
+    queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ApiResponse>(Options(
@@ -162,7 +174,7 @@ class _PetApi implements PetApi {
                 headers: <String, dynamic>{r'Content-Type': 'application/json'},
                 extra: _extra,
                 contentType: 'application/json')
-            .compose(_dio.options, null,
+            .compose(_dio.options, '/pet/$petId/uploadImage',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ApiResponse.fromJson(_result.data!);

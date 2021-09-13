@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:sample/generated-swagger-files/model/user.dart';
+import 'generated-swagger-files/repositories.dart';
+import 'api_auth_repository_impl.dart';
+import 'package:dio/dio.dart';
 
 void main() {
   runApp(MyApp());
+  UserApiRepositoryImpl(
+          dio: Dio(),
+          baseUrl: 'https://petstore.swagger.io/v2',
+          authRepository: ApiAuthRepositoryImpl())
+      .createUser(User(id: 5))
+      .then((value) => value.when(success: (_) {
+            print("success!");
+          }, failure: (error) {
+            print(error);
+          }));
 }
 
 class MyApp extends StatelessWidget {
